@@ -6,8 +6,18 @@ from selenium.webdriver.common.actions.action_builder import ActionBuilder
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.actions.wheel_input import ScrollOrigin
 import time
 import datetime
+from userMenu import getUserSelection
+
+def getUserInput():
+    chosenStat = getUserSelection()
+    print("\nRecieved input successfully: ", chosenStat)
+    return chosenStat
+
+if __name__ == '__main__':
+    chosenStat = getUserInput()
 
 PATH = "C:\Program Files (x86)\chromedriver.exe"
 
@@ -18,6 +28,18 @@ driver.get("https://www.nhl.com/")
 driver.maximize_window()
 
 wait = WebDriverWait(driver, 10)  
+
+def closeCookieWindow():
+    try:
+        #checks to see if cookie banner is present
+        cookieAccept = driver.find_element(By.XPATH, "//*[@id='onetrust-accept-btn-handler']")
+        cookieAccept.click()
+        print("\nCookie window close successfully!\n")
+
+    except Exception as e:
+        print("\nError finding or closing cookie banner: " , e, "\n")     
+
+closeCookieWindow()
 
 #click into stat page
 statsElement = wait.until(EC.element_to_be_clickable((By.XPATH, "//span[contains(text(), 'Stats')]")))
@@ -31,14 +53,25 @@ statTab = driver.find_element(By.ID, "skaters").click()
 
 now = datetime.datetime.now()
 
-userTestSelect = 3
-match userTestSelect:
+
+    
+#userTestSelect = 1
+
+match chosenStat:
     case 1:
-        print("Top 5 Goal Leaders: ( As of", now , ")")
+        print("\nTop 5 Goal Leaders: ( As of", now , ")")
         for count in range(3):
-            clickGoal = wait.until(EC.element_to_be_clickable((By.XPATH, "//div[@title='Goals']")))
+            clickGoal = driver.find_element(By.XPATH, "//div[@title='Goals']")
+    
+            scroll_orgin = ScrollOrigin.from_element(clickGoal)
+            ActionChains(driver)\
+                .scroll_to_element(clickGoal)\
+                .scroll_from_origin(scroll_orgin, 0, 200)\
+                .perform()
+            time.sleep(0.5)
+            
             clickGoal.click()
-            #print("CLicked goal column")
+            #print("Clicked goal column")
 
         rows = driver.find_elements(By.XPATH, "//*[@id='season-tabpanel']/span/div/div[2]/table/tbody/tr")
 
@@ -51,9 +84,17 @@ match userTestSelect:
             print(nameValue + ":" , goalValue)
 
     case 2:
-        print("Top 5 Assist Leaders: ( As of", now , ")")
+        print("\nTop 5 Assist Leaders: ( As of", now , ")")
         for count in range(3):
             clickAssist = wait.until(EC.element_to_be_clickable((By.XPATH, "//div[@title='Assists']")))
+
+            scroll_orgin = ScrollOrigin.from_element(clickAssist)
+            ActionChains(driver)\
+                .scroll_to_element(clickAssist)\
+                .scroll_from_origin(scroll_orgin, 0, 200)\
+                .perform()
+            time.sleep(0.5)
+
             clickAssist.click()
             #print("CLicked assist column")
 
@@ -68,9 +109,17 @@ match userTestSelect:
             print(nameValue + ": " , assistValue)
 
     case 3:
-        print("Top 5 Point Leaders: ( As of", now , ")")
+        print("\nTop 5 Point Leaders: ( As of", now , ")")
         for count in range(3):
             clickPoints = wait.until(EC.element_to_be_clickable((By.XPATH, "//div[@title='Points']")))
+
+            scroll_orgin = ScrollOrigin.from_element(clickPoints)
+            ActionChains(driver)\
+                .scroll_to_element(clickPoints)\
+                .scroll_from_origin(scroll_orgin, 0, 200)\
+                .perform()
+            time.sleep(0.5)
+
             clickPoints.click()
             #print("CLicked points column")
 
@@ -85,7 +134,7 @@ match userTestSelect:
             print(nameValue + ": " , pointsValue)
     
     case _:
-        print("Error please try using a valid number.")
+        print("\nError please try using a valid number.")
 
 
 driver.quit()
