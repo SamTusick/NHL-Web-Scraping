@@ -136,5 +136,9 @@ match chosenStat:
     case _:
         print("\nError please try using a valid number.")
 
-
-driver.quit()
+userContinue = input("\nWant to continue: y/n\t")
+if(userContinue == 'y'):
+    getUserInput()
+else:
+    print("Closing...")
+    driver.quit()
