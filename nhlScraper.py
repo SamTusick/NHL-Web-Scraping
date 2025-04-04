@@ -1,5 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.actions.action_builder import ActionBuilder
@@ -11,13 +12,17 @@ import time
 import datetime
 from userMenu import getUserSelection
 
+chrome_options = Options()
+chrome_options.add_argument("--ignore-certificate-errors")
+
+service = Service("C:/Program Files (x86)/chromedriver.exe")
+driver = webdriver.Chrome(service=service, options=chrome_options)
+
 def getUserInput():
     chosenStat = getUserSelection()
     print("\nRecieved input successfully: ", chosenStat)
     return chosenStat
-
-if __name__ == '__main__':
-    chosenStat = getUserInput()
+    
 
 PATH = "C:\Program Files (x86)\chromedriver.exe"
 
@@ -52,93 +57,109 @@ statTab = driver.find_element(By.ID, "skaters").click()
 #print("Skater tab")
 
 now = datetime.datetime.now()
+#userLoop = 3
 
+prevChosenStat = None
+firstTime = True
 
-    
-#userTestSelect = 1
+while True:
+    newChosenStat = getUserInput()
 
-match chosenStat:
-    case 1:
-        print("\nTop 5 Goal Leaders: ( As of", now , ")")
-        for count in range(3):
-            clickGoal = driver.find_element(By.XPATH, "//div[@title='Goals']")
-    
-            scroll_orgin = ScrollOrigin.from_element(clickGoal)
-            ActionChains(driver)\
-                .scroll_to_element(clickGoal)\
-                .scroll_from_origin(scroll_orgin, 0, 200)\
-                .perform()
-            time.sleep(0.5)
-            
-            clickGoal.click()
-            #print("Clicked goal column")
+    if(firstTime):
+        userLoop = 3
+        firstTime = False
+    elif(newChosenStat == prevChosenStat):
+        userLoop = 0
+    else:
+        userLoop = 1
 
-        rows = driver.find_elements(By.XPATH, "//*[@id='season-tabpanel']/span/div/div[2]/table/tbody/tr")
+    prevChosenStat = newChosenStat
 
-        for i in range(min(5, len(rows))):
-            nameAddress = rows[i].find_element(By.XPATH, "./td[2]/div/a")
-            nameValue = nameAddress.text
+    match newChosenStat:
+        case 1:
+            print("\nTop 5 Goal Leaders: ( As of", now , ")")
+            for count in range(userLoop):
+                clickGoal = driver.find_element(By.XPATH, "//div[@title='Goals']")
+        
+                scroll_orgin = ScrollOrigin.from_element(clickGoal)
+                ActionChains(driver)\
+                    .scroll_to_element(clickGoal)\
+                    .scroll_from_origin(scroll_orgin, 0, 200)\
+                    .perform()
+                time.sleep(0.5)
+                
+                clickGoal.click()
+                #print("Clicked goal column")
 
-            goalAddress = rows[i].find_element(By.XPATH, "./td[8]")
-            goalValue = goalAddress.text
-            print(nameValue + ":" , goalValue)
+            rows = driver.find_elements(By.XPATH, "//*[@id='season-tabpanel']/span/div/div[2]/table/tbody/tr")
 
-    case 2:
-        print("\nTop 5 Assist Leaders: ( As of", now , ")")
-        for count in range(3):
-            clickAssist = wait.until(EC.element_to_be_clickable((By.XPATH, "//div[@title='Assists']")))
+            for i in range(min(5, len(rows))):
+                nameAddress = rows[i].find_element(By.XPATH, "./td[2]/div/a")
+                nameValue = nameAddress.text
 
-            scroll_orgin = ScrollOrigin.from_element(clickAssist)
-            ActionChains(driver)\
-                .scroll_to_element(clickAssist)\
-                .scroll_from_origin(scroll_orgin, 0, 200)\
-                .perform()
-            time.sleep(0.5)
+                goalAddress = rows[i].find_element(By.XPATH, "./td[8]")
+                goalValue = goalAddress.text
+                print(nameValue + ":" , goalValue)
 
-            clickAssist.click()
-            #print("CLicked assist column")
+        case 2:
+            print("\nTop 5 Assist Leaders: ( As of", now , ")")
+            for count in range(userLoop):
+                clickAssist = wait.until(EC.element_to_be_clickable((By.XPATH, "//div[@title='Assists']")))
 
-        rows = driver.find_elements(By.XPATH, "//*[@id='season-tabpanel']/span/div/div[2]/table/tbody/tr")
+                scroll_orgin = ScrollOrigin.from_element(clickAssist)
+                ActionChains(driver)\
+                    .scroll_to_element(clickAssist)\
+                    .scroll_from_origin(scroll_orgin, 0, 200)\
+                    .perform()
+                time.sleep(0.5)
 
-        for i in range(min(5, len(rows))):
-            nameAddress = rows[i].find_element(By.XPATH, "./td[2]/div/a")
-            nameValue = nameAddress.text
+                clickAssist.click()
+                #print("CLicked assist column")
 
-            assistAddress = rows[i].find_element(By.XPATH, "./td[9]")
-            assistValue = assistAddress.text
-            print(nameValue + ": " , assistValue)
+            rows = driver.find_elements(By.XPATH, "//*[@id='season-tabpanel']/span/div/div[2]/table/tbody/tr")
 
-    case 3:
-        print("\nTop 5 Point Leaders: ( As of", now , ")")
-        for count in range(3):
-            clickPoints = wait.until(EC.element_to_be_clickable((By.XPATH, "//div[@title='Points']")))
+            for i in range(min(5, len(rows))):
+                nameAddress = rows[i].find_element(By.XPATH, "./td[2]/div/a")
+                nameValue = nameAddress.text
 
-            scroll_orgin = ScrollOrigin.from_element(clickPoints)
-            ActionChains(driver)\
-                .scroll_to_element(clickPoints)\
-                .scroll_from_origin(scroll_orgin, 0, 200)\
-                .perform()
-            time.sleep(0.5)
+                assistAddress = rows[i].find_element(By.XPATH, "./td[9]")
+                assistValue = assistAddress.text
+                print(nameValue + ": " , assistValue)
 
-            clickPoints.click()
-            #print("CLicked points column")
+        case 3:
+            print("\nTop 5 Point Leaders: ( As of", now , ")")
+            for count in range(userLoop):
+                clickPoints = wait.until(EC.element_to_be_clickable((By.XPATH, "//div[@title='Points']")))
 
-        rows = driver.find_elements(By.XPATH, "//*[@id='season-tabpanel']/span/div/div[2]/table/tbody/tr")
+                scroll_orgin = ScrollOrigin.from_element(clickPoints)
+                ActionChains(driver)\
+                    .scroll_to_element(clickPoints)\
+                    .scroll_from_origin(scroll_orgin, 0, 200)\
+                    .perform()
+                time.sleep(0.5)
 
-        for i in range(min(5, len(rows))):
-            nameAddress = rows[i].find_element(By.XPATH, "./td[2]/div/a")
-            nameValue = nameAddress.text
+                clickPoints.click()
+                #print("CLicked points column")
 
-            pointsAddress = rows[i].find_element(By.XPATH, "./td[10]")
-            pointsValue = pointsAddress.text
-            print(nameValue + ": " , pointsValue)
-    
-    case _:
-        print("\nError please try using a valid number.")
+            rows = driver.find_elements(By.XPATH, "//*[@id='season-tabpanel']/span/div/div[2]/table/tbody/tr")
 
-userContinue = input("\nWant to continue: y/n\t")
-if(userContinue == 'y'):
-    getUserInput()
-else:
-    print("Closing...")
-    driver.quit()
+            for i in range(min(5, len(rows))):
+                nameAddress = rows[i].find_element(By.XPATH, "./td[2]/div/a")
+                nameValue = nameAddress.text
+
+                pointsAddress = rows[i].find_element(By.XPATH, "./td[10]")
+                pointsValue = pointsAddress.text
+                print(nameValue + ": " , pointsValue)
+        
+        case _:
+            print("\nError please try using a valid number.")
+
+    userContinue = input("\nWant to continue: (y/n)\t").strip().lower()
+    if(userContinue == 'n'):
+        print("Closing...")
+        driver.quit()
+        break 
+    elif(userContinue != 'y'):
+        print("Invalid Input")
+    1
+#if __name__ == '__main__':
