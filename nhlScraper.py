@@ -12,6 +12,7 @@ import time
 import datetime
 from userMenu import getUserSelection
 
+#gets rid of certain error messages
 chrome_options = Options()
 chrome_options.add_argument("--ignore-certificate-errors")
 
