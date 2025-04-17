@@ -16,19 +16,16 @@ from userMenu import getUserSelection
 chrome_options = Options()
 chrome_options.add_argument("--ignore-certificate-errors")
 
-service = Service("C:/Program Files (x86)/chromedriver.exe")
-driver = webdriver.Chrome(service=service, options=chrome_options)
-
 def getUserInput():
     chosenStat = getUserSelection()
     print("\nRecieved input successfully: ", chosenStat)
     return chosenStat
     
 
-PATH = "C:\Program Files (x86)\chromedriver.exe"
+PATH = "C:\Program Files (x86)\chromedriver-win64\chromedriver.exe"
 
 service = Service(PATH)
-driver = webdriver.Chrome(service=service)
+driver = webdriver.Chrome(service=service, options=chrome_options)
 
 driver.get("https://www.nhl.com/")
 driver.maximize_window()
@@ -162,5 +159,5 @@ while True:
         break 
     elif(userContinue != 'y'):
         print("Invalid Input")
-    1
+    
 #if __name__ == '__main__':
