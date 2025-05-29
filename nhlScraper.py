@@ -20,7 +20,6 @@ def getUserInput():
     chosenStat = getUserSelection()
     print("\nRecieved input successfully: ", chosenStat)
     return chosenStat
-    
 
 PATH = "C:\Program Files (x86)\chromedriver-win64\chromedriver.exe"
 
