@@ -15,6 +15,7 @@ from userMenu import getUserSelection
 #gets rid of certain error messages
 chrome_options = Options()
 chrome_options.add_argument("--ignore-certificate-errors")
+chrome_options.add_argument("--headless")
 
 def getUserInput():
     chosenStat = getUserSelection()
