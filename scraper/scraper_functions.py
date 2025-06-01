@@ -11,11 +11,11 @@ now = datetime.datetime.now().strftime("%B %d, %Y at %I:%M %p")
 
 # Wait for Spinner to Close
 
-#def wait_for_spinner_to_disappear(wait):
-    #try:
- #       wait.until(EC.invisibility_of_element_located((By.CLASS_NAME, "loading-container")))
-  #  except Exception as e:
- #       print("Spinner may not be present or already hidden:", e)
+def wait_for_spinner_to_disappear(wait):
+    try:
+        wait.until(EC.invisibility_of_element_located((By.CLASS_NAME, "loading-container")))
+    except Exception as e:
+        print("Spinner may not be present or already hidden:", e)
 
 # Close Cookie Window
 
