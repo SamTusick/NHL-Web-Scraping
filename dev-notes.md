@@ -51,8 +51,7 @@
 
 - Add dropdown for selecting team or player stats
 - Allow user to export results to `.csv`
-- Add authentication layer for protected routes
-- Schedule scraper to run periodically and store results (cron job or background task)
+- Allow users to select type(By Season, All-time), Season, Game Type(Playoffs)
 
 ---
 
@@ -77,6 +76,4 @@
 
 ## Where to Continue
 
-- Set up Flask with one working `/stats` route
-- Test returning hardcoded JSON before scraping
-- Then plug in scraper logic and return real-time data
+- Decide whether to start frontend or continue adding different stats
