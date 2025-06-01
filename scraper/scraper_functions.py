@@ -45,26 +45,26 @@ def click_skater_section(driver, wait):
     skater_tab = wait.until(EC.element_to_be_clickable((By.ID, "skaters")))
     skater_tab.click()
 
-# Goal Leaders Function
+# Refactored Skater Stat Leaders Functions
 
-def scrape_goal_leaders(driver, wait, count=5, is_first=True):
+def scrape_stat_leaders(driver, wait, stat_title="Goals", column_index=8, label="goals", count=5, is_first=True):
     print("Clicking Stat Tab...")
     click_stat_tab(driver, wait)
 
     print("Getting Skaters...")
     click_skater_section(driver, wait)
 
-    print("Waiting for table and clicking Goals column...")
+    print(f"Waiting for table and clicking {stat_title} column...")
 
     wait.until(EC.presence_of_element_located((By.XPATH, "//*[@id='season-tabpanel']//table")))
     wait_for_spinner_to_disappear(wait)
 
-    click_goal = wait.until(EC.element_to_be_clickable((By.XPATH, "//div[@title='Goals']")))
+    click_header = wait.until(EC.element_to_be_clickable((By.XPATH, f"//div[@title='{stat_title}']")))
 
     # Scroll into view
-    scroll_origin = ScrollOrigin.from_element(click_goal)
+    scroll_origin = ScrollOrigin.from_element(click_header)
     ActionChains(driver)\
-        .scroll_to_element(click_goal)\
+        .scroll_to_element(click_header)\
         .scroll_from_origin(scroll_origin, 0, 200)\
         .perform()
     time.sleep(0.5)
@@ -73,9 +73,9 @@ def scrape_goal_leaders(driver, wait, count=5, is_first=True):
     for i in range(click_times):
         try:
             wait_for_spinner_to_disappear(wait)
-            click_goal = wait.until(EC.element_to_be_clickable((By.XPATH, "//div[@title='Goals']")))
-            click_goal.click()
-            print(f"Clicking Goals column... ({i+1}/{click_times})")
+            click_header = wait.until(EC.element_to_be_clickable((By.XPATH, f"//div[@title='{stat_title}']")))
+            click_header.click()
+            print(f"Clicking {stat_title} column... ({i+1}/{click_times})")
             time.sleep(0.5)
         except Exception as e:
             print(f"Click attempt {i+1} failed:", e)
@@ -89,114 +89,10 @@ def scrape_goal_leaders(driver, wait, count=5, is_first=True):
     leaders = []
     for i in range(min(count, len(rows))):
         name = rows[i].find_element(By.XPATH, "./td[2]/div/a").text
-        goals = rows[i].find_element(By.XPATH, "./td[8]").text
-        leaders.append({"name": name, "goals": goals})
-
+        stat_values = rows[i].find_element(By.XPATH, f"./td[{column_index}]").text
+        leaders.append({"name": name, label: stat_values})
+    
     return {
-        "title": f"Top {count} Goal Leaders (As of {now})",
-        "leaders": leaders
-    }
-
-# Assist Leaders Function
-
-def scrape_assist_leaders(driver, wait, count=5, is_first=True):
-    print("Clicking Stat Tab...")
-    click_stat_tab(driver, wait)
-
-    print("Getting Skaters...")
-    click_skater_section(driver, wait)
-
-    print("Waiting for table and clicking Assists column...")
-
-    wait.until(EC.presence_of_element_located((By.XPATH, "//*[@id='season-tabpanel']//table")))
-    wait_for_spinner_to_disappear(wait)
-
-    click_assist = wait.until(EC.element_to_be_clickable((By.XPATH, "//div[@title='Assists']")))
-
-    # Scroll into view
-    scroll_origin = ScrollOrigin.from_element(click_assist)
-    ActionChains(driver)\
-        .scroll_to_element(click_assist)\
-        .scroll_from_origin(scroll_origin, 0, 200)\
-        .perform()
-    time.sleep(0.5)
-
-    click_times = 3 if is_first else 1
-    for i in range(click_times):
-        try:
-            wait_for_spinner_to_disappear(wait)
-            click_assist = wait.until(EC.element_to_be_clickable((By.XPATH, "//div[@title='Assists']")))
-            click_assist.click()
-            print(f"Clicking Assists column... ({i+1}/{click_times})")
-            time.sleep(0.5)
-        except Exception as e:
-            print(f"Click attempt {i+1} failed:", e)
-            time.sleep(1)
-
-    # Grab the top N rows
-    rows = driver.find_elements(By.XPATH, "//*[@id='season-tabpanel']//table/tbody/tr")
-
-    now = datetime.datetime.now().strftime("%B %d, %Y at %I:%M %p")
-
-    leaders = []
-    for i in range(min(count, len(rows))):
-        name = rows[i].find_element(By.XPATH, "./td[2]/div/a").text
-        assists = rows[i].find_element(By.XPATH, "./td[9]").text
-        leaders.append({"name": name, "assists": assists})
-
-    return {
-        "title": f"Top {count} Assist Leaders (As of {now})",
-        "leaders": leaders
-    }
-
-# Points Leaders Function
-
-def scrape_points_leaders(driver, wait, count=5, is_first=True):
-    print("Clicking Stat Tab...")
-    click_stat_tab(driver, wait)
-
-    print("Getting Skaters...")
-    click_skater_section(driver, wait)
-
-    print("Waiting for table and clicking Points column...")
-
-    wait.until(EC.presence_of_element_located((By.XPATH, "//*[@id='season-tabpanel']//table")))
-    wait_for_spinner_to_disappear(wait)
-
-    click_points = wait.until(EC.element_to_be_clickable((By.XPATH, "//div[@title='Points']")))
-
-    # Scroll into view
-    scroll_origin = ScrollOrigin.from_element(click_points)
-    ActionChains(driver)\
-        .scroll_to_element(click_points)\
-        .scroll_from_origin(scroll_origin, 0, 200)\
-        .perform()
-    time.sleep(0.5)
-
-    click_times = 3 if is_first else 1
-    for i in range(click_times):
-        try:
-            wait_for_spinner_to_disappear(wait)
-            click_points = wait.until(EC.element_to_be_clickable((By.XPATH, "//div[@title='Points']")))
-            click_points.click()
-            print(f"Clicking Points column... ({i+1}/{click_times})")
-            time.sleep(0.5)
-        except Exception as e:
-            print(f"Click attempt {i+1} failed:", e)
-            time.sleep(1)
-
-    # Grab the top N rows
-    rows = driver.find_elements(By.XPATH, "//*[@id='season-tabpanel']//table/tbody/tr")
-
-    now = datetime.datetime.now().strftime("%B %d, %Y at %I:%M %p")
-
-    leaders = []
-    for i in range(min(count, len(rows))):
-        name = rows[i].find_element(By.XPATH, "./td[2]/div/a").text
-        points = rows[i].find_element(By.XPATH, "./td[10]").text
-        leaders.append({"name": name, "points": points})
-
-    return {
-        "title": f"Top {count} Points Leaders (As of {now})",
+        "title": f"Top {count} {stat_title} Leaders (As of {now})",
         "leaders": leaders
     }

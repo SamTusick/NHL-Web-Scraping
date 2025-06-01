@@ -2,16 +2,25 @@
 
 # app.py
 from flask import Flask, jsonify, request
-from scraper.driver import get_driver
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.chrome.options import Options
 from scraper.scraper_functions import (
-     scrape_goal_leaders,
-     scrape_assist_leaders,
-     scrape_points_leaders,  
+     scrape_stat_leaders,
      close_cookie_window  
 )
 
 app = Flask(__name__)
 
+# Driver SetUp Function
+
+def setup_driver():
+    options = Options()
+    options.add_argument("--headless")
+    driver = webdriver.Chrome(options=options)
+    wait = WebDriverWait(driver, 15)
+    return driver, wait
 
 # Main Page
 
@@ -23,19 +32,20 @@ def index():
 
 @app.route("/stats/goals", methods=["GET"])
 def get_goal_stats():
+    
+    print("Setting Up Driver..")
+    driver, wait = setup_driver()
 
     count = request.args.get("count", default=5, type=int)
 
     count = 6
-    
-    driver, wait = get_driver()
+
     driver.get("https://www.nhl.com")
     driver.maximize_window()
 
     try:
         close_cookie_window(driver, wait)
-        data = scrape_goal_leaders(driver, wait, count, is_first=True)
-
+        data = scrape_stat_leaders(driver, wait, stat_title = "Goals", column_index = 8, label = "goals", count=count, is_first=True)
 
         return jsonify(data)
     finally:
@@ -46,19 +56,19 @@ def get_goal_stats():
 @app.route("/stats/assists", methods=["GET"])
 def get_assists_stats():
 
+    print("Setting Up Driver..")
+    driver, wait = setup_driver()
+
     count = request.args.get("count", default=5, type=int)
 
     count = 6
 
-
-    driver, wait = get_driver()
     driver.get("https://www.nhl.com")
     driver.maximize_window()
 
     try:
         close_cookie_window(driver, wait)
-        data = scrape_assist_leaders(driver, wait, count, is_first=True)
-
+        data = scrape_stat_leaders(driver, wait, stat_title = "Assists", column_index = 9, label = "assists", count=count, is_first=True)
 
         return jsonify(data)
     finally:
@@ -69,19 +79,19 @@ def get_assists_stats():
 @app.route("/stats/points", methods=["GET"])
 def get_points_stats():
 
+    print("Setting Up Driver..")
+    driver, wait = setup_driver()
+
     count = request.args.get("count", default=5, type=int)
 
     count = 6
 
-
-    driver, wait = get_driver()
     driver.get("https://www.nhl.com")
     driver.maximize_window()
 
     try:
         close_cookie_window(driver, wait)
-        data = scrape_points_leaders(driver, wait, count, is_first=True)
-
+        data = scrape_stat_leaders(driver, wait, stat_title = "Points", column_index = 10, label = "points", count=count, is_first=True)
 
         return jsonify(data)
     finally:
