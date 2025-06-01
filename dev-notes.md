@@ -4,20 +4,20 @@
 
 - [x] Review existing `userMenu.py` and `nhlScraper.py`
 - [x] Add `headless` mode to Selenium
-- [ ] Clean up XPath selectors for stability
+- [x] Clean up XPath selectors for stability
 - [x] Create initial README.md with overview and instructions
 
 ---
 
-## Weekly Plan (June 3–9)
+## Weekly Plan (June 1–5)
 
 ### 🧱 Backend Prep
 
-- [ ] Refactor scraper into functions (goals, assists, points)
-- [ ] Set up Python virtual environment
-- [ ] Install and configure Flask
-- [ ] Create base Flask route to test connection
-- [ ] Build first API route: `/stats/goals`
+- [x] Refactor scraper into functions (goals, assists, points)
+- [x] Set up Python virtual environment
+- [x] Install and configure Flask
+- [x] Create base Flask route to test connection
+- [x] Build first API route: `/stats/goals`
 
 ---
 
