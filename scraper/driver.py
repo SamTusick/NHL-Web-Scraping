@@ -17,9 +17,10 @@ def get_driver():
     # Gets rid of certain error messages
     chrome_options = Options()
     chrome_options.add_argument("--ignore-certificate-errors")
-    chrome_options.add_argument("--headless")
+    #chrome_options.add_argument("--headless=new")
     chrome_options.add_argument("--disable-gpu")
     chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--window-size=1920,1080")
 
     PATH = "C:\Program Files (x86)\chromedriver-win64\chromedriver.exe"
     service = Service(PATH)

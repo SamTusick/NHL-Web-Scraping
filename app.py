@@ -17,9 +17,15 @@ app = Flask(__name__)
 
 def setup_driver():
     options = Options()
-    options.add_argument("--headless")
+    options.add_argument("--headless=new")
+    options.add_argument("--ignore-certificate-errors")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--window-size=1920,1080")
+
     driver = webdriver.Chrome(options=options)
     wait = WebDriverWait(driver, 15)
+
     return driver, wait
 
 # Main Page
@@ -33,7 +39,7 @@ def index():
 @app.route("/stats/skater/goals", methods=["GET"])
 def get_goal_stats():
     
-    print("Setting Up Driver..")
+    print("Setting Up Driver...")
     driver, wait = setup_driver()
 
     count = request.args.get("count", default=5, type=int)
@@ -41,7 +47,6 @@ def get_goal_stats():
     count = 6
 
     driver.get("https://www.nhl.com")
-    driver.maximize_window()
 
     try:
         close_cookie_window(driver, wait)
@@ -56,7 +61,7 @@ def get_goal_stats():
 @app.route("/stats/skater/assists", methods=["GET"])
 def get_assists_stats():
 
-    print("Setting Up Driver..")
+    print("Setting Up Driver...")
     driver, wait = setup_driver()
 
     count = request.args.get("count", default=5, type=int)
@@ -64,7 +69,6 @@ def get_assists_stats():
     count = 6
 
     driver.get("https://www.nhl.com")
-    driver.maximize_window()
 
     try:
         close_cookie_window(driver, wait)
@@ -87,7 +91,6 @@ def get_points_stats():
     count = 6
 
     driver.get("https://www.nhl.com")
-    driver.maximize_window()
 
     try:
         close_cookie_window(driver, wait)
