@@ -44,7 +44,7 @@ def get_goal_stats():
 
     count = request.args.get("count", default=5, type=int)
 
-    count = 6
+    count = 6   # Set to change for user input, using for testing
 
     driver.get("https://www.nhl.com")
 
@@ -66,7 +66,7 @@ def get_assists_stats():
 
     count = request.args.get("count", default=5, type=int)
 
-    count = 6
+    count = 6   # Set to change for user input, using for testing
 
     driver.get("https://www.nhl.com")
 
@@ -88,13 +88,36 @@ def get_points_stats():
 
     count = request.args.get("count", default=5, type=int)
 
-    count = 6
+    count = 6   # Set to change for user input, using for testing
 
     driver.get("https://www.nhl.com")
 
     try:
         close_cookie_window(driver, wait)
         data = scrape_stat_leaders(driver, wait, stat_title = "Points", column_index = 10, label = "points", count=count, is_first=True)
+
+        return jsonify(data)
+    finally:
+        driver.quit()
+
+        
+# Goalie SV% Leaders
+
+@app.route("/stats/goalie/sv", methods=["GET"])
+def get_sv_stats():
+
+    print("Setting Up Driver..")
+    driver, wait = setup_driver()
+
+    count = request.args.get("count", default=5, type=int)
+
+    count = 6  # Set to change for user input, using for testing
+
+    driver.get("https://www.nhl.com")
+
+    try:
+        close_cookie_window(driver, wait)
+        data = scrape_stat_leaders(driver, wait, stat_title = "Points", column_index = 10, label = "points", count=count, is_first=True, playerType="goalies")
 
         return jsonify(data)
     finally:

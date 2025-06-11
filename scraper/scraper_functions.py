@@ -37,22 +37,22 @@ def click_stat_tab(driver, wait):
     statsElement = wait.until(EC.element_to_be_clickable((By.XPATH, "//span[contains(text(), 'Stats')]")))
     statsElement.click()
 
-# Click Skater Section
+# Click Player Section
 
-def click_skater_section(driver, wait):
-
+def click_player_section(driver, wait, playerType):
     wait_for_spinner_to_disappear(wait)
-    skater_tab = wait.until(EC.element_to_be_clickable((By.ID, "skaters")))
+    tab_id = "goalies" if playerType == "goalies" else "skaters"
+    skater_tab = wait.until(EC.element_to_be_clickable((By.ID, tab_id)))
     skater_tab.click()
 
 # Refactored Skater Stat Leaders Functions
 
-def scrape_stat_leaders(driver, wait, stat_title="Goals", column_index=8, label="goals", count=5, is_first=True):
+def scrape_stat_leaders(driver, wait, stat_title="Goals", column_index=8, label="goals", count=5, is_first=True, playerType="skater"):
     print("Clicking Stat Tab...")
     click_stat_tab(driver, wait)
 
-    print("Getting Skaters...")
-    click_skater_section(driver, wait)
+    print(f"Getting {playerType.title()}s...")
+    click_player_section(driver, wait, playerType=playerType)
 
     print(f"Waiting for table and clicking {stat_title} column...")
 
@@ -93,6 +93,6 @@ def scrape_stat_leaders(driver, wait, stat_title="Goals", column_index=8, label=
         leaders.append({"name": name, label: stat_values})
     
     return {
-        "title": f"Top {count} {stat_title} Leaders (As of {now})",
+        "title": f"Top {count} {playerType.title()} {stat_title} Leaders (As of {now})",
         "leaders": leaders
     }
