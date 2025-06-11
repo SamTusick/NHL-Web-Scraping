@@ -34,7 +34,7 @@ def setup_driver():
 def index():
     return jsonify({"message": "Welcome to the NHL Stats API!"})
 
-# Goal Leaders
+# Skater Goal Leaders
 
 @app.route("/stats/skater/goals", methods=["GET"])
 def get_goal_stats():
@@ -56,7 +56,7 @@ def get_goal_stats():
     finally:
         driver.quit()
 
-# Assists Leaders
+# Skater Assists Leaders
 
 @app.route("/stats/skater/assists", methods=["GET"])
 def get_assists_stats():
@@ -78,7 +78,7 @@ def get_assists_stats():
     finally:
         driver.quit()
 
-# Point Leaders
+# Skater Point Leaders
 
 @app.route("/stats/skater/points", methods=["GET"])
 def get_points_stats():
