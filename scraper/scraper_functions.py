@@ -73,6 +73,9 @@ def scrape_stat_leaders(driver, wait, stat_title="Goals", column_index=8, label=
 
     if stat_title == "Goals Against Average":
         click_times = 2
+
+    if stat_title == "Shutouts":
+        click_times = 1
         
     for i in range(click_times):
         try:

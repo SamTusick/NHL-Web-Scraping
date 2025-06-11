@@ -145,5 +145,27 @@ def get_gaa_stats():
     finally:
         driver.quit()
 
+# Goalie SO Leaders
+
+@app.route("/stats/goalies/so", methods=["GET"])
+def get_so_stats():
+
+    print("Setting Up Driver..")
+    driver, wait = setup_driver()
+
+    count = request.args.get("count", default=5, type=int)
+
+    count = 10  # Set to change for user input, using for testing
+
+    driver.get("https://www.nhl.com")
+
+    try:
+        close_cookie_window(driver, wait)
+        data = scrape_stat_leaders(driver, wait, stat_title = "Shutouts", column_index = 17, label = "shutouts", count=count, is_first=True, playerType="goalie")
+
+        return jsonify(data)
+    finally:
+        driver.quit()
+
 if __name__ == "__main__":
     app.run(debug=True)
