@@ -41,7 +41,7 @@ def click_stat_tab(driver, wait):
 
 def click_player_section(driver, wait, playerType):
     wait_for_spinner_to_disappear(wait)
-    tab_id = "goalies" if playerType == "goalies" else "skaters"
+    tab_id = "goalies" if playerType == "goalie" else "skaters"
     skater_tab = wait.until(EC.element_to_be_clickable((By.ID, tab_id)))
     skater_tab.click()
 
@@ -70,6 +70,10 @@ def scrape_stat_leaders(driver, wait, stat_title="Goals", column_index=8, label=
     time.sleep(0.5)
 
     click_times = 3 if is_first else 1
+
+    if stat_title == "Goals Against Average":
+        click_times = 2
+        
     for i in range(click_times):
         try:
             wait_for_spinner_to_disappear(wait)
@@ -93,6 +97,6 @@ def scrape_stat_leaders(driver, wait, stat_title="Goals", column_index=8, label=
         leaders.append({"name": name, label: stat_values})
     
     return {
-        "title": f"Top {count} {playerType.title()} {stat_title} Leaders (As of {now})",
+        "title": f"Top {count} {playerType.title()} '{stat_title}' Leaders (As of {now})",
         "leaders": leaders
     }
