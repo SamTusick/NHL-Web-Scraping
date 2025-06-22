@@ -77,7 +77,7 @@ def scrape_stat_leaders(driver, wait, stat_title="Goals", column_index=8, label=
     print(f"Getting {playerType.title()}s...")
     click_player_section(driver, wait, playerType=playerType)
 
-    print(f"Selecting {gameType} and Season...")
+    print(f"Selecting {gameType}...")
     click_game_type(driver, wait, gameType=gameType)
 
     print(f"Waiting for table and clicking {stat_title} column...")
