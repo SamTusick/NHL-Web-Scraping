@@ -17,7 +17,7 @@ app = Flask(__name__)
 
 def setup_driver():
     options = Options()
-    options.add_argument("--headless=new")
+    #options.add_argument("--headless=new")
     options.add_argument("--ignore-certificate-errors")
     options.add_argument("--disable-gpu")
     options.add_argument("--no-sandbox")
@@ -106,7 +106,9 @@ def get_sv_stats():
 
     try:
         close_cookie_window(driver, wait)
-        data = scrape_stat_leaders(driver, wait, stat_title = "Save Percentage", column_index = 14, label = "save_percentage", is_first=True, playerType="goalie")
+        count = request.args.get("count", default=6, type=int)
+        gameType = request.args.get("gameType", default="Regular Season")
+        data = scrape_stat_leaders(driver, wait, stat_title = "Save Percentage", column_index = 15, label = "save_percentage", is_first=True, playerType="goalie", count=count, gameType=gameType)
 
         return jsonify(data)
     finally:
@@ -124,7 +126,9 @@ def get_gaa_stats():
 
     try:
         close_cookie_window(driver, wait)
-        data = scrape_stat_leaders(driver, wait, stat_title = "Goals Against Average", column_index = 15, label = "goals_against_allowed", is_first=True, playerType="goalie")
+        count = request.args.get("count", default=6, type=int)
+        gameType = request.args.get("gameType", default="Regular Season")
+        data = scrape_stat_leaders(driver, wait, stat_title = "Goals Against Average", column_index = 16, label = "goals_against_allowed", is_first=True, playerType="goalie", count=count, gameType=gameType)
 
         return jsonify(data)
     finally:
@@ -142,7 +146,9 @@ def get_so_stats():
 
     try:
         close_cookie_window(driver, wait)
-        data = scrape_stat_leaders(driver, wait, stat_title = "Shutouts", column_index = 17, label = "shutouts", is_first=True, playerType="goalie")
+        count = request.args.get("count", default=6, type=int)
+        gameType = request.args.get("gameType", default="Regular Season")
+        data = scrape_stat_leaders(driver, wait, stat_title = "Shutouts", column_index = 18, label = "shutouts", is_first=True, playerType="goalie", count=count, gameType=gameType)
 
         return jsonify(data)
     finally:
