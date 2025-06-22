@@ -42,15 +42,12 @@ def get_goal_stats():
     print("Setting Up Driver...")
     driver, wait = setup_driver()
 
-    count = request.args.get("count", default=5, type=int)
-
-    count = 6   # Set to change for user input, using for testing
-
     driver.get("https://www.nhl.com")
 
     try:
-        close_cookie_window(driver, wait)
-        data = scrape_stat_leaders(driver, wait, stat_title = "Goals", column_index = 8, label = "goals", count=count, is_first=True)
+        count = request.args.get("count", default=6, type=int)
+        gameType = request.args.get("gameType", default="Regular Season")
+        data = scrape_stat_leaders(driver, wait, stat_title = "Goals", column_index = 8, label = "goals", is_first=True, count=count, gameType=gameType)
 
         return jsonify(data)
     finally:
@@ -64,15 +61,13 @@ def get_assists_stats():
     print("Setting Up Driver...")
     driver, wait = setup_driver()
 
-    count = request.args.get("count", default=5, type=int)
-
-    count = 6   # Set to change for user input, using for testing
-
     driver.get("https://www.nhl.com")
 
     try:
         close_cookie_window(driver, wait)
-        data = scrape_stat_leaders(driver, wait, stat_title = "Assists", column_index = 9, label = "assists", count=count, is_first=True)
+        count = request.args.get("count", default=6, type=int)
+        gameType = request.args.get("gameType", default="Regular Season")
+        data = scrape_stat_leaders(driver, wait, stat_title = "Assists", column_index = 9, label = "assists", is_first=True, count=count, gameType=gameType)
 
         return jsonify(data)
     finally:
@@ -86,15 +81,13 @@ def get_points_stats():
     print("Setting Up Driver..")
     driver, wait = setup_driver()
 
-    count = request.args.get("count", default=5, type=int)
-
-    count = 6   # Set to change for user input, using for testing
-
     driver.get("https://www.nhl.com")
 
     try:
         close_cookie_window(driver, wait)
-        data = scrape_stat_leaders(driver, wait, stat_title = "Points", column_index = 10, label = "points", count=count, is_first=True)
+        count = request.args.get("count", default=6, type=int)
+        gameType = request.args.get("gameType", default="Regular Season")
+        data = scrape_stat_leaders(driver, wait, stat_title = "Points", column_index = 10, label = "points", is_first=True, count=count, gameType=gameType)
 
         return jsonify(data)
     finally:
@@ -109,15 +102,11 @@ def get_sv_stats():
     print("Setting Up Driver..")
     driver, wait = setup_driver()
 
-    count = request.args.get("count", default=5, type=int)
-
-    count = 10  # Set to change for user input, using for testing
-
     driver.get("https://www.nhl.com")
 
     try:
         close_cookie_window(driver, wait)
-        data = scrape_stat_leaders(driver, wait, stat_title = "Save Percentage", column_index = 14, label = "save percentage", count=count, is_first=True, playerType="goalie")
+        data = scrape_stat_leaders(driver, wait, stat_title = "Save Percentage", column_index = 14, label = "save_percentage", is_first=True, playerType="goalie")
 
         return jsonify(data)
     finally:
@@ -131,15 +120,11 @@ def get_gaa_stats():
     print("Setting Up Driver..")
     driver, wait = setup_driver()
 
-    count = request.args.get("count", default=5, type=int)
-
-    count = 10  # Set to change for user input, using for testing
-
     driver.get("https://www.nhl.com")
 
     try:
         close_cookie_window(driver, wait)
-        data = scrape_stat_leaders(driver, wait, stat_title = "Goals Against Average", column_index = 15, label = "goals against allowed", count=count, is_first=True, playerType="goalie")
+        data = scrape_stat_leaders(driver, wait, stat_title = "Goals Against Average", column_index = 15, label = "goals_against_allowed", is_first=True, playerType="goalie")
 
         return jsonify(data)
     finally:
@@ -153,15 +138,11 @@ def get_so_stats():
     print("Setting Up Driver..")
     driver, wait = setup_driver()
 
-    count = request.args.get("count", default=5, type=int)
-
-    count = 10  # Set to change for user input, using for testing
-
     driver.get("https://www.nhl.com")
 
     try:
         close_cookie_window(driver, wait)
-        data = scrape_stat_leaders(driver, wait, stat_title = "Shutouts", column_index = 17, label = "shutouts", count=count, is_first=True, playerType="goalie")
+        data = scrape_stat_leaders(driver, wait, stat_title = "Shutouts", column_index = 17, label = "shutouts", is_first=True, playerType="goalie")
 
         return jsonify(data)
     finally:

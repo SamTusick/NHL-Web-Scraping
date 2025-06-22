@@ -1,5 +1,6 @@
 # NHL Scraper Functions
 
+from flask import request
 from selenium.webdriver.common.by import By
 from selenium.webdriver import ActionChains
 from selenium.webdriver.support import expected_conditions as EC
@@ -45,14 +46,39 @@ def click_player_section(driver, wait, playerType):
     skater_tab = wait.until(EC.element_to_be_clickable((By.ID, tab_id)))
     skater_tab.click()
 
+# Click Game Type
+
+def click_game_type(driver, wait, gameType):
+    wait_for_spinner_to_disappear(wait)
+    
+    # Click the dropdown toggle button
+    try:
+        dropdown_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//input[@value="Regular Season"]')))
+    except:
+        dropdown_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//input[@value="Playoffs"]')))
+
+    dropdown_button.click()
+
+    # Wait for the option list to appear and click the desired one
+    game_type_option = wait.until(EC.element_to_be_clickable((By.XPATH, f"//li[contains(text(), '{gameType}')]")))
+    game_type_option.click()
+
+    time.sleep(1)
+
 # Refactored Skater Stat Leaders Functions
 
-def scrape_stat_leaders(driver, wait, stat_title="Goals", column_index=8, label="goals", count=5, is_first=True, playerType="skater"):
+def scrape_stat_leaders(driver, wait, stat_title="Goals", column_index=8, label="goals", is_first=True, 
+                        playerType="skater", count=None, gameType=None):
+
     print("Clicking Stat Tab...")
     click_stat_tab(driver, wait)
 
+
     print(f"Getting {playerType.title()}s...")
     click_player_section(driver, wait, playerType=playerType)
+
+    print(f"Selecting {gameType} and Season...")
+    click_game_type(driver, wait, gameType=gameType)
 
     print(f"Waiting for table and clicking {stat_title} column...")
 
@@ -100,6 +126,6 @@ def scrape_stat_leaders(driver, wait, stat_title="Goals", column_index=8, label=
         leaders.append({"name": name, label: stat_values})
     
     return {
-        "title": f"Top {count} {playerType.title()} '{stat_title}' Leaders (As of {now})",
+        "title": f"Top {count} {playerType.title()} '{stat_title}' Leaders in the {gameType} (As of {now})",
         "leaders": leaders
     }
