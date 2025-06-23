@@ -7,7 +7,7 @@ body {
   margin: 0;
   font-family: 'Michroma' , sans-serif;
   background-color: #0B0B0B;
-  color: #FFFFFF;
+  color: #F0F0F0;
   
 }
 
@@ -26,10 +26,10 @@ section {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #F04E23;
+  background: #1F75FE;
   border-radius: 8px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #ff6840; 
+  background: #1F75FE; 
 }
