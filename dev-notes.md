@@ -19,6 +19,11 @@
 - [x] Create base Flask route to test connection
 - [x] Build first API route: `/stats/goals`
 
+## Weekly Plan (June 22-28)
+
+- [x] Create routes for goalies
+- [x] Create function to select game type (Regular Season / Playoffs)
+
 ---
 
 ### ⚛️ Frontend (Coming Soon)
@@ -36,6 +41,15 @@
 - Selenium can be slow — consider caching results later
 - Use `print()` or logging to test API endpoints before integrating with React
 - Keep `PATH` to ChromeDriver portable for easier deployment
+
+---
+
+## Color Palette
+
+- Background: "#0B0B0B"
+- Primary Accent: "#F04E23"
+- Main Text: "#FFFFFF"
+- Secondary Text: "#B0B0B0"
 
 ---
 
