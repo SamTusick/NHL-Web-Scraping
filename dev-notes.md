@@ -47,9 +47,10 @@
 ## Color Palette
 
 - Background: "#0B0B0B"
-- Primary Accent: "#F04E23"
-- Main Text: "#FFFFFF"
-- Secondary Text: "#B0B0B0"
+- Main Text: "#F0F0F0"
+- Primary Accent: "#1F75FE"
+- Secondary Accent: "#7FDBFF"
+- Highlight / Call-to-Action: "#FF4136"
 
 ---
 
