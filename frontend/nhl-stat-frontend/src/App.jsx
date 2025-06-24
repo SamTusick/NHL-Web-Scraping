@@ -1,14 +1,12 @@
-import '../src/styling/App.css'
-import StartButton from './components/StartButton';
+/* App.jsx */
+
+import HomePage from "./pages/Home.jsx";
 
 
 export default function App() {
   return (
     <>
-      <div>
-        <h1 className='title'>NHL Stat Web Scraper</h1>
-      </div>
-      <StartButton />
+      <HomePage />
     </>
   );
 }
