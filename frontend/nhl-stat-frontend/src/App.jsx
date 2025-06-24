@@ -8,7 +8,7 @@ export default function App() {
       <div>
         <h1 className='title'>NHL Stat Web Scraper</h1>
       </div>
-      <StartButton></StartButton>
+      <StartButton />
     </>
   );
 }

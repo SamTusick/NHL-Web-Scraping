@@ -1,16 +1,13 @@
 /* Index Styling */
 
-html {
-  scroll-behavior: smooth;
-}
-body {
-  background: url('/ice-background.jpeg') no-repeat center center fixed;
-  background-size: 100% auto; /* <-- changed from cover */
-  background-repeat: no-repeat;
-  background-color: rgba(0, 0, 0, 0.5); /* fallback for empty space */
+html, body {
   margin: 0;
+  padding: 0;
+  background-color: #0B0B0B;
   font-family: 'Michroma', sans-serif;
   color: #F0F0F0;
+  height: 100%;
+  overflow-x: hidden;
 }
 
 section {
