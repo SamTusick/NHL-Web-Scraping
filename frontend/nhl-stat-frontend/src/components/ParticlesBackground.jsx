@@ -1,2 +1,0 @@
-/* Particle Background Component */
-
