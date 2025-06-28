@@ -16,7 +16,6 @@
   font-family: 'Michroma', sans-serif;
   color: #F0F0F0;  
   text-shadow: 1px 1px 2.5px #1F75FE;
-  margin-bottom: 0;
 }
 
 .sub-title {
@@ -24,5 +23,5 @@
   font-family: 'Michroma', sans-serif;
   color: #F0F0F0;  
   text-shadow: 1px 1px 2.5px #1F75FE;
-
+  margin-top: 0;
 }
