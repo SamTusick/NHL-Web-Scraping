@@ -28,10 +28,10 @@
 
 ### ⚛️ Frontend (Coming Soon)
 
-- [ ] Scaffold new React app
-- [ ] Create simple homepage with stat selection
-- [ ] Connect to Flask backend via fetch
-- [ ] Display JSON results in a table
+- [x] Scaffold new React app
+- [x] Create simple homepage with stat selection
+- [x] Connect to Flask backend via fetch
+- [x] Display JSON results in a table
 
 ---
 
@@ -91,4 +91,4 @@
 
 ## Where to Continue
 
-- Decide whether to start frontend or continue adding different stats
+- Deploy backend with Render and frontend with Netlify
