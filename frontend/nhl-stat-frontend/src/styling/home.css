@@ -1,7 +1,7 @@
 /* Home Page Styling  */
 
 .home-container {
-  background-image: url('/hockey-arena.png'); /* Adjust path if in public */
+  background-image: url('/hockey-arena.png'); 
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -58,6 +58,6 @@
 }
 
 .start-button:hover {
-    background-color: #1F75FE;
-    color: #F0F0F0;
+  background-color: #1F75FE;
+  color: #F0F0F0;
 }
