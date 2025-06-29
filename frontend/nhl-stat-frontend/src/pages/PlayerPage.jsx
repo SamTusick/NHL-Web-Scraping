@@ -1,5 +1,6 @@
 /* Player Page */
 
+import PreviousButton from '../components/PreviousButton'
 import SelectionButton from '../components/SelectionButton'
 import '../styling/SelectionButton.css'
 import '../styling/playerpage.css'
@@ -16,6 +17,9 @@ export default function PlayerPage(){
                     <SelectionButton label="Skaters" to="/skaters"/>
                     <SelectionButton label="Goalies" to="/goalies"/>
                 </div>
+            </div>
+            <div>
+                <PreviousButton to ="/"/>
             </div>
         </>
     )
