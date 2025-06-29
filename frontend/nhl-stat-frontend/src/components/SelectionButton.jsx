@@ -1,7 +1,7 @@
 /* Selection Buttons Component */
 
-import { Link } from 'react-router-dom';
-import '../styling/SelectionButton.css';
+import { Link } from 'react-router-dom'
+import '../styling/SelectionButton.css'
 
 
 export default function SelectionButton({label, to}){
