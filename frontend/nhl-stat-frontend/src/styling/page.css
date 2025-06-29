@@ -1,6 +1,6 @@
-/* Player Page Styling */
+/* Page Styling */
 
-.player-content {
+.page-content {
   position: relative;
   z-index: 2;
   display: flex;

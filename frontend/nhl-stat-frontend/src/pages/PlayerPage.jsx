@@ -4,12 +4,12 @@ import HomeButton from '../components/HomeButton'
 import PreviousButton from '../components/PreviousButton'
 import SelectionButton from '../components/SelectionButton'
 import '../styling/SelectionButton.css'
-import '../styling/playerPage.css'
+import '../styling/page.css'
 
 export default function PlayerPage(){
     return (
         <>
-            <div className="player-content">
+            <div className="page-content">
                 <h1 className='title'>Player Selection</h1>
                 <h4 className='sub-title'>Select The Type of Player You Want To See</h4>
             </div>
