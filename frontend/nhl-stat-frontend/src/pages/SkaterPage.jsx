@@ -1,6 +1,5 @@
 /* Skater Page */
 
-
 import HomeButton from '../components/HomeButton'
 import PreviousButton from '../components/PreviousButton'
 import SelectionButton from '../components/SelectionButton'
@@ -16,9 +15,9 @@ export default function PlayerPage(){
             </div>
             <div className='selection-button-center'>
                 <div className='selection-button-wrapper'>
-                    <SelectionButton label="Goals" to="/stats/skaters/goals"/>
-                    <SelectionButton label="Assists" to="/stats/skaters/assists"/>
-                    <SelectionButton label="Points" to="/stats/skaters/points"/>
+                    <SelectionButton label="Goals" to="/stats/skater/goals"/>
+                    <SelectionButton label="Assists" to="/stats/skater/assists"/>
+                    <SelectionButton label="Points" to="/stats/skater/points"/>
                 </div>
             </div>
             <div>
