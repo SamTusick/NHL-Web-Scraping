@@ -1,5 +1,6 @@
 /* Player Page */
 
+import HomeButton from '../components/HomeButton'
 import PreviousButton from '../components/PreviousButton'
 import SelectionButton from '../components/SelectionButton'
 import '../styling/SelectionButton.css'
@@ -20,6 +21,7 @@ export default function PlayerPage(){
             </div>
             <div>
                 <PreviousButton to ="/"/>
+                <HomeButton to ="/"/>
             </div>
         </>
     )
