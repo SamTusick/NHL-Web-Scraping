@@ -10,6 +10,7 @@ import SkaterPage from "./pages/SkaterPage.jsx"
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import SvStatPage from "./pages/SvStatPage.jsx";
 import GaaStatPage from "./pages/GaaStatPage.jsx";
+import SoStatPage from "./pages/SoStatPage.jsx";
 
 export default function App() {
   return (
@@ -27,6 +28,7 @@ export default function App() {
 
           <Route path="/stats/goalies/sv" element={<SvStatPage />} />
           <Route path="/stats/goalies/gaa" element={<GaaStatPage />} />
+          <Route path="/stats/goalies/so" element={<SoStatPage />} />
         </Routes>
       </BrowserRouter>
       
