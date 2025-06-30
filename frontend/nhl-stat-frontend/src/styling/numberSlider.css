@@ -46,3 +46,6 @@
     text-align: center;
 }
 
+input[type="radio"]:checked {
+  accent-color: #1F75FE; 
+}
