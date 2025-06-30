@@ -1,5 +1,6 @@
 /* App.jsx */
 
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import AssistStatPage from "./pages/AssistStatPage.jsx";
 import GoaliePage from "./pages/GoaliePage.jsx";
 import GoalStatPage from "./pages/GoalStatPage.jsx";
@@ -7,7 +8,6 @@ import HomePage from "./pages/Home.jsx"
 import PlayerPage from "./pages/PlayerPage.jsx"
 import PointStatPage from "./pages/PointsStatPage.jsx";
 import SkaterPage from "./pages/SkaterPage.jsx"
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import SvStatPage from "./pages/SvStatPage.jsx";
 import GaaStatPage from "./pages/GaaStatPage.jsx";
 import SoStatPage from "./pages/SoStatPage.jsx";
