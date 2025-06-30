@@ -31,6 +31,7 @@ export default function InputAndSlider(){
                             name="seasonType"
                             type="radio"
                             value={"Regular Season"}
+                            defaultChecked={true}
                             onChange={(e) => setSeasonType(e.target.value)}
                         />
                     </label>
