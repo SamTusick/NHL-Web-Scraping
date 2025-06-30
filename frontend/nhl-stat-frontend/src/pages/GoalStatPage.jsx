@@ -18,7 +18,7 @@ export default function GoalStatPage(){
             <PageInput playerType="Skaters" stat="Goals" />
             <div className='selection-button-center'>
                 <div className='selection-button-wrapper'>
-                    <SelectionButton label="See Results" to="/results" />          
+                    <SelectionButton label="See Results" to="/results/skaters/goals" />          
                 </div>
             </div>
         </>

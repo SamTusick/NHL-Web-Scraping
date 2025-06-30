@@ -18,7 +18,7 @@ export default function SvStatPage(){
             <PageInput playerType="Goalies" stat="Save Percentage" />
             <div className='selection-button-center'>
                 <div className='selection-button-wrapper'>
-                    <SelectionButton label="See Results" to="/results" />          
+                    <SelectionButton label="See Results" to="/results/goalies/sv" />          
                 </div>
             </div>
         </>

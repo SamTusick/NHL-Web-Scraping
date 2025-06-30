@@ -18,7 +18,7 @@ export default function GaaStatPage(){
             <PageInput playerType="Goalies" stat="Goals Against Average" />
             <div className='selection-button-center'>
                 <div className='selection-button-wrapper'>
-                    <SelectionButton label="See Results" to="/results" />          
+                    <SelectionButton label="See Results" to="/results/goalies/gaa" />          
                 </div>
             </div>
         </>
