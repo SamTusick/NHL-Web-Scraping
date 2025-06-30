@@ -11,7 +11,7 @@ export default function PageInput({playerType, stat}){
         <>
             <div className="control-row">
                 <label className="number-input">
-                    Number of {playerType}: 
+                    Number of {playerType} (1-100): 
                     <input 
                         className="number-content"
                         name="numValue" 
