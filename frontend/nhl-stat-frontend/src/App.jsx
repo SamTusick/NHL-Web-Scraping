@@ -19,13 +19,13 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/PlayerPage" element={<PlayerPage />} />
-          <Route path="/skater" element={<SkaterPage />} />
+          <Route path="/playerpage" element={<PlayerPage />} />
+          <Route path="/skaters" element={<SkaterPage />} />
           <Route path="/goalies" element={<GoaliePage />} />
 
-          <Route path="/stats/skater/goals" element={<GoalStatPage />} />
-          <Route path="/stats/skater/assists" element={<AssistStatPage />} />
-          <Route path="/stats/skater/points" element={<PointStatPage />} />
+          <Route path="/stats/skaters/goals" element={<GoalStatPage />} />
+          <Route path="/stats/skaters/assists" element={<AssistStatPage />} />
+          <Route path="/stats/skaters/points" element={<PointStatPage />} />
 
           <Route path="/stats/goalies/sv" element={<SvStatPage />} />
           <Route path="/stats/goalies/gaa" element={<GaaStatPage />} />

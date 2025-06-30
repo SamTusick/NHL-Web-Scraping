@@ -15,7 +15,7 @@ export default function PlayerPage(){
             </div>
             <div className='selection-button-center'>
                 <div className='selection-button-wrapper'>
-                    <SelectionButton label="Skaters" to="/skater"/>
+                    <SelectionButton label="Skaters" to="/skaters"/>
                     <SelectionButton label="Goalies" to="/goalies"/>
                 </div>
             </div>

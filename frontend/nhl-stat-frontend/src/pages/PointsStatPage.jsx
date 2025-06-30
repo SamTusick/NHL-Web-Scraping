@@ -14,7 +14,7 @@ export default function PointStatPage(){
                 <h4 className='sub-title'>Select The Number of Skaters and Season Type</h4>
             </div>
             <HomeButton />
-            <PreviousButton to="/skater" />
+            <PreviousButton to="/skaters" />
             <PageInput playerType="Skaters" stat="Points" />
             <div className='selection-button-center'>
                 <div className='selection-button-wrapper'>
