@@ -50,7 +50,6 @@
 - Main Text: "#F0F0F0"
 - Primary Accent: "#1F75FE"
 - Secondary Accent: "#7FDBFF"
-- Highlight / Call-to-Action: "#FF4136"
 
 ---
 
