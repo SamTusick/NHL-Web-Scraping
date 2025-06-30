@@ -1,7 +1,7 @@
 /* Goal Stat Page */
 
 import '../styling/page.css'
-import InputAndSlider from '../components/NumberSlider'
+import PageInput from '../components/PageInput'
 import HomeButton from '../components/HomeButton'
 import PreviousButton from '../components/PreviousButton'
 
@@ -14,7 +14,7 @@ export default function GoalStatPage(){
             </div>
             <HomeButton />
             <PreviousButton to="/skater" />
-            <InputAndSlider />
+            <PageInput />
         </>
     )
 }

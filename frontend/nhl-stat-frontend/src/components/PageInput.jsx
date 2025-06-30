@@ -1,10 +1,10 @@
-/* Number Input and Slider Component */
+/* Number and Season Input Component */
 
 import { useState } from "react";
-import '../styling/numberSlider.css'
+import '../styling/pageInput.css'
 
-export default function InputAndSlider(){
-    const [listNum , setListNum] = useState(10);
+export default function PageInput(){
+    const [listNum , setListNum] = useState("10");
     const [seasonType, setSeasonType] = useState("Regular Season");
 
     return(
@@ -19,7 +19,20 @@ export default function InputAndSlider(){
                         min={1} 
                         max={100} 
                         value={listNum}
-                        onChange={(e) => setListNum(e.target.value)}
+                        onChange={(e) => {
+                            const val = e.target.value;
+
+                            
+                            if (val === "" || (/^\d{0,3}$/.test(val))) {
+                                setListNum(val);
+                            }
+                        }}
+                        onBlur={() => {
+                            const num = Number(listNum);
+                            const clamped = Math.max(1, Math.min(num || 1, 100));
+                            setListNum(clamped.toString());
+                        }}
+
                     />
                 </label>
 
