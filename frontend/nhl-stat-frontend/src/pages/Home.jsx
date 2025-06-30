@@ -12,7 +12,7 @@ export default function HomePage(){
                 <h4 className='sub-title'></h4> 
                 <div className='selection-button-center'>
                     <div className='selection-button-wrapper'>
-                        <SelectionButton label="Get Started" to="/PlayerPage" />
+                        <SelectionButton label="Get Started" to="/playerpage" />
                     </div>  
                 </div> 
             </div>
