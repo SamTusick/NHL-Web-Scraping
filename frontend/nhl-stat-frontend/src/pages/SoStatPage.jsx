@@ -18,7 +18,7 @@ export default function SoStatPage(){
             <PageInput playerType="Goalies" stat="Shutouts" />
             <div className='selection-button-center'>
                 <div className='selection-button-wrapper'>
-                    <SelectionButton label="See Results" to="/results" />          
+                    <SelectionButton label="See Results" to="/results/goalies/so" />          
                 </div>
             </div>
         </>
