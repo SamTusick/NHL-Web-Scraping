@@ -5,6 +5,7 @@ import GoaliePage from "./pages/GoaliePage.jsx";
 import GoalStatPage from "./pages/GoalStatPage.jsx";
 import HomePage from "./pages/Home.jsx"
 import PlayerPage from "./pages/PlayerPage.jsx"
+import PointStatPage from "./pages/PointsStatPage.jsx";
 import SkaterPage from "./pages/SkaterPage.jsx"
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
@@ -20,6 +21,7 @@ export default function App() {
 
           <Route path="/stats/skater/goals" element={<GoalStatPage />} />
           <Route path="/stats/skater/assists" element={<AssistStatPage />} />
+          <Route path="/stats/skater/points" element={<PointStatPage />} />
         </Routes>
       </BrowserRouter>
       
