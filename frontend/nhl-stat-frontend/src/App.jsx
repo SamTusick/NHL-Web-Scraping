@@ -1,6 +1,7 @@
 /* App.jsx */
 
 import GoaliePage from "./pages/GoaliePage.jsx";
+import GoalStatPage from "./pages/GoalStatPage.jsx";
 import HomePage from "./pages/Home.jsx"
 import PlayerPage from "./pages/PlayerPage.jsx"
 import SkaterPage from "./pages/SkaterPage.jsx"
@@ -15,6 +16,8 @@ export default function App() {
           <Route path="/PlayerPage" element={<PlayerPage />} />
           <Route path="/skater" element={<SkaterPage />} />
           <Route path="/goalies" element={<GoaliePage />} />
+
+          <Route path="/stats/skater/goals" element={<GoalStatPage />} />
         </Routes>
       </BrowserRouter>
       
