@@ -3,7 +3,7 @@
 import { useState } from "react";
 import '../styling/pageInput.css'
 
-export default function PageInput(){
+export default function PageInput({playerType, stat}){
     const [listNum , setListNum] = useState("10");
     const [seasonType, setSeasonType] = useState("Regular Season");
 
@@ -11,7 +11,7 @@ export default function PageInput(){
         <>
             <div className="control-row">
                 <label className="number-input">
-                    Number of Skaters: 
+                    Number of {playerType}: 
                     <input 
                         className="number-content"
                         name="numValue" 
@@ -60,7 +60,7 @@ export default function PageInput(){
                 </p>
             </div>
             
-            <p className="page-summary">Top {listNum} for The {seasonType} Is Selected</p>
+            <p className="page-summary">Top {listNum} {playerType} By {stat} for The {seasonType} Are Selected</p>
         </>
     )
    

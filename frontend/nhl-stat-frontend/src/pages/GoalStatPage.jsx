@@ -4,6 +4,7 @@ import '../styling/page.css'
 import PageInput from '../components/PageInput'
 import HomeButton from '../components/HomeButton'
 import PreviousButton from '../components/PreviousButton'
+import SelectionButton from '../components/SelectionButton'
 
 export default function GoalStatPage(){
     return(
@@ -14,7 +15,12 @@ export default function GoalStatPage(){
             </div>
             <HomeButton />
             <PreviousButton to="/skater" />
-            <PageInput />
+            <PageInput playerType="Skaters" stat="Goals" />
+            <div className='selection-button-center'>
+                <div className='selection-button-wrapper'>
+                    <SelectionButton label="See Results" to="/results" />          
+                </div>
+            </div>
         </>
     )
 }
