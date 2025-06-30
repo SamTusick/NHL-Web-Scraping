@@ -8,6 +8,7 @@ import PlayerPage from "./pages/PlayerPage.jsx"
 import PointStatPage from "./pages/PointsStatPage.jsx";
 import SkaterPage from "./pages/SkaterPage.jsx"
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import SvStatPage from "./pages/SvStatPage.jsx";
 
 export default function App() {
   return (
@@ -22,6 +23,8 @@ export default function App() {
           <Route path="/stats/skater/goals" element={<GoalStatPage />} />
           <Route path="/stats/skater/assists" element={<AssistStatPage />} />
           <Route path="/stats/skater/points" element={<PointStatPage />} />
+
+          <Route path="/stats/goalies/sv" element={<SvStatPage />} />
         </Routes>
       </BrowserRouter>
       
