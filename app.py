@@ -36,7 +36,7 @@ def index():
 
 # Skater Goal Leaders
 
-@app.route("/stats/skater/goals", methods=["GET"])
+@app.route("/stats/skaters/goals", methods=["GET"])
 def get_goal_stats():
     
     print("Setting Up Driver...")
@@ -55,7 +55,7 @@ def get_goal_stats():
 
 # Skater Assists Leaders
 
-@app.route("/stats/skater/assists", methods=["GET"])
+@app.route("/stats/skaters/assists", methods=["GET"])
 def get_assists_stats():
 
     print("Setting Up Driver...")
@@ -75,7 +75,7 @@ def get_assists_stats():
 
 # Skater Point Leaders
 
-@app.route("/stats/skater/points", methods=["GET"])
+@app.route("/stats/skaters/points", methods=["GET"])
 def get_points_stats():
 
     print("Setting Up Driver..")
