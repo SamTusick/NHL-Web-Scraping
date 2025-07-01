@@ -134,6 +134,6 @@ def scrape_stat_leaders(driver, wait, stat_title="Goals", column_index=8, label=
         leaders.append({"name": name, label: stat_values})
     
     return {
-        "title": f"Top {count} {playerType.title()} '{stat_title}' Leaders in the {seasonType} (As of {now})",
+        "title": f"Top {count} {playerType.title()} - {stat_title} Leaders in the {seasonType} (As of {now})",
         "leaders": leaders
     }

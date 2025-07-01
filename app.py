@@ -2,6 +2,7 @@
 
 # app.py
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
@@ -12,12 +13,13 @@ from scraper.scraper_functions import (
 )
 
 app = Flask(__name__)
+CORS(app)
 
 # Driver SetUp Function
 
 def setup_driver():
     options = Options()
-    #options.add_argument("--headless=new")
+    options.add_argument("--headless=new")
     options.add_argument("--ignore-certificate-errors")
     options.add_argument("--disable-gpu")
     options.add_argument("--no-sandbox")

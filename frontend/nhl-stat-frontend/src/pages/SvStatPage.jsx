@@ -14,10 +14,11 @@ export default function SvStatPage(){
     const navigate = useNavigate();
 
     const handleSeeResults = () => {
+        console.log({ count, gameType });
         navigate("/results/goalies/sv", {
                 state: {
                 playerType: "goalies",
-                statType: "sv",
+                statType: "save_percentage",
                 count,
                 gameType
                 }

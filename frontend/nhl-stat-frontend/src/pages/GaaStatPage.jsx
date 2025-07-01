@@ -18,6 +18,7 @@ export default function GaaStatPage(){
                 state: {
                 playerType: "goalies",
                 statType: "gaa",
+                statKey: "goals_against_allowed",
                 count,
                 gameType
                 }

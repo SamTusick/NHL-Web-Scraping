@@ -12,7 +12,7 @@ export default function PageInput({playerType, stat, onCountChange, onGameTypeCh
     }, [listNum]);
 
     useEffect(() => {
-        onGameTypeChange?.(parseInt(seasonType));
+        onGameTypeChange?.(seasonType);
     }, [seasonType]);
     
     return(

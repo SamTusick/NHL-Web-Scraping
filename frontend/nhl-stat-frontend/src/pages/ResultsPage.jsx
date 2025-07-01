@@ -8,12 +8,14 @@ import PreviousButton from '../components/PreviousButton'
 
 export default function ResultsPage(){
     const { state } = useLocation();
-    const { playerType, statType, count, gameType } = state;
+    const { playerType, statType, statKey, count, gameType } = state;
 
     const [results, setResults] = useState(null);
 
 
     useEffect(() => {
+        console.log("FETCHING:", { playerType, statType, count, gameType });
+        
         const fetchData = async () => {
             const url = `http://localhost:5000/stats/${playerType}/${statType}?count=${count}&gameType=${encodeURIComponent(gameType)}`;
             try {
@@ -44,7 +46,7 @@ export default function ResultsPage(){
                         <ul>
                         {results.leaders.map((player, i) => (
                             <li key={i}>
-                            {player.name}: {Object.values(player)[1]}
+                                {player.name}: {player[statKey]}
                             </li>
                         ))}
                         </ul>
