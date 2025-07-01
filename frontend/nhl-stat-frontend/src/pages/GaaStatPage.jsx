@@ -1,12 +1,30 @@
 /* GAA Stat Page */
 
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styling/page.css'
 import PageInput from '../components/PageInput'
 import HomeButton from '../components/HomeButton'
 import PreviousButton from '../components/PreviousButton'
-import SelectionButton from '../components/SelectionButton'
 
 export default function GaaStatPage(){
+    const [count, setCount] = useState(10);
+    const [gameType, setGameType] = useState("Regular Season");
+
+    const navigate = useNavigate();
+
+    const handleSeeResults = () => {
+        navigate("/results/goalies/gaa", {
+                state: {
+                playerType: "goalies",
+                statType: "gaa",
+                count,
+                gameType
+                }
+            });
+        };
+
+
     return(
         <>
             <div className="page-content">
@@ -15,10 +33,17 @@ export default function GaaStatPage(){
             </div>
             <HomeButton />
             <PreviousButton to="/goalies" />
-            <PageInput playerType="Goalies" stat="Goals Against Average" />
+            <PageInput 
+                playerType="Goalies" 
+                stat="Goals Against Average"
+                onCountChange={setCount}
+                onGameTypeChange={setGameType} 
+            />
             <div className='selection-button-center'>
                 <div className='selection-button-wrapper'>
-                    <SelectionButton label="See Results" to="/results/goalies/gaa" />          
+                    <button className='selection-button' onClick={handleSeeResults}>
+                        See Results    
+                    </button>      
                 </div>
             </div>
         </>

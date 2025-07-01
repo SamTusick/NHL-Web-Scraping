@@ -1,12 +1,30 @@
 /* Points Stat Page */
 
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styling/page.css'
 import PageInput from '../components/PageInput'
 import HomeButton from '../components/HomeButton'
 import PreviousButton from '../components/PreviousButton'
-import SelectionButton from '../components/SelectionButton'
 
 export default function PointStatPage(){
+    const [count, setCount] = useState(10);
+    const [gameType, setGameType] = useState("Regular Season");
+
+    const navigate = useNavigate();
+
+    const handleSeeResults = () => {
+        navigate("/results/skaters/points", {
+                state: {
+                playerType: "skaters",
+                statType: "points",
+                count,
+                gameType
+                }
+            });
+        };
+
+
     return(
         <>
             <div className="page-content">
@@ -15,10 +33,17 @@ export default function PointStatPage(){
             </div>
             <HomeButton />
             <PreviousButton to="/skaters" />
-            <PageInput playerType="Skaters" stat="Points" />
+            <PageInput 
+                playerType="Skaters" 
+                stat="Points" 
+                onCountChange={setCount}
+                onGameTypeChange={setGameType}
+            />
             <div className='selection-button-center'>
                 <div className='selection-button-wrapper'>
-                    <SelectionButton label="See Results" to="/results/skaters/goals" />          
+                    <button className='selection-button' onClick={handleSeeResults}>
+                        See Results    
+                    </button>     
                 </div>
             </div>
         </>

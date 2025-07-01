@@ -1,12 +1,20 @@
 /* Number and Season Input Component */
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import '../styling/pageInput.css'
 
-export default function PageInput({playerType, stat}){
+export default function PageInput({playerType, stat, onCountChange, onGameTypeChange}){
     const [listNum , setListNum] = useState("10");
     const [seasonType, setSeasonType] = useState("Regular Season");
 
+    useEffect(() => {
+        onCountChange?.(parseInt(listNum));
+    }, [listNum]);
+
+    useEffect(() => {
+        onGameTypeChange?.(parseInt(seasonType));
+    }, [seasonType]);
+    
     return(
         <>
             <div className="control-row">
