@@ -48,10 +48,10 @@ def click_player_section(driver, wait, playerType):
 
 # Click Game Type
 
-def click_season_type(driver, wait, seasonType):
+def click_game_type(driver, wait, gameType):
     wait_for_spinner_to_disappear(wait)
     
-    print(f"Selecting game type: {seasonType}")
+    print(f"Selecting game type: {gameType}")
     
     try:
         # More robust selector using aria-label
@@ -62,11 +62,11 @@ def click_season_type(driver, wait, seasonType):
 
         # Wait for dropdown option and click it
         game_type_option = wait.until(EC.element_to_be_clickable(
-            (By.XPATH, f'//li[normalize-space()="{seasonType}"]')
+            (By.XPATH, f'//li[normalize-space()="{gameType}"]')
         ))
         game_type_option.click()
 
-        print(f"✅ Clicked game type: {seasonType}")
+        print(f"✅ Clicked game type: {gameType}")
         time.sleep(1)
 
     except Exception as e:
@@ -76,7 +76,10 @@ def click_season_type(driver, wait, seasonType):
 # Refactored Skater Stat Leaders Functions
 
 def scrape_stat_leaders(driver, wait, stat_title="Goals", column_index=8, label="goals", is_first=True, 
-                        playerType="skater", count=None, seasonType=None):
+                        playerType="skater", count=None, gameType=None):
+    
+    if gameType == "Playoffs" and playerType == "goalie":
+        column_index = column_index - 1
 
     print("Clicking Stat Tab...")
     click_stat_tab(driver, wait)
@@ -85,8 +88,8 @@ def scrape_stat_leaders(driver, wait, stat_title="Goals", column_index=8, label=
     print(f"Getting {playerType.title()}s...")
     click_player_section(driver, wait, playerType=playerType)
 
-    print(f"Selecting {seasonType}...")
-    click_season_type(driver, wait, seasonType=seasonType)
+    print(f"Selecting {gameType}...")
+    click_game_type(driver, wait, gameType=gameType)
 
     print(f"Waiting for table and clicking {stat_title} column...")
 
@@ -134,6 +137,6 @@ def scrape_stat_leaders(driver, wait, stat_title="Goals", column_index=8, label=
         leaders.append({"name": name, label: stat_values})
     
     return {
-        "title": f"Top {count} {playerType.title()} - {stat_title} Leaders in the {seasonType} (As of {now})",
+        "title": f"Top {count} {playerType.title()} - {stat_title} Leaders in the {gameType} (As of {now})",
         "leaders": leaders
     }

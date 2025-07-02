@@ -129,8 +129,8 @@ def get_gaa_stats():
     try:
         close_cookie_window(driver, wait)
         count = request.args.get("count", default=6, type=int)
-        seasonType = request.args.get("seasonType", default="Regular Season")
-        data = scrape_stat_leaders(driver, wait, stat_title = "Goals Against Average", column_index = 16, label = "goals_against_allowed", is_first=True, playerType="goalie", count=count, seasonType=seasonType)
+        gameType = request.args.get("gameType", default="Regular Season")
+        data = scrape_stat_leaders(driver, wait, stat_title = "Goals Against Average", column_index = 16, label = "goals_against_allowed", is_first=True, playerType="goalie", count=count, gameType=gameType)
 
         return jsonify(data)
     finally:
