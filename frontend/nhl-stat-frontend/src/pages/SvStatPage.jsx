@@ -18,7 +18,8 @@ export default function SvStatPage(){
         navigate("/results/goalies/sv", {
                 state: {
                 playerType: "goalies",
-                statType: "save_percentage",
+                statType: "sv",
+                statKey: "save_percentage",
                 count,
                 gameType
                 }
