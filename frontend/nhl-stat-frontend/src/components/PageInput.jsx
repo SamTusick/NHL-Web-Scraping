@@ -31,13 +31,13 @@ export default function PageInput({playerType, stat, onCountChange, onGameTypeCh
                             const val = e.target.value;
 
                             
-                            if (val === "" || (/^\d{0,3}$/.test(val))) {
+                            if (val === "" || (/^\d{0,2}$/.test(val))) {
                                 setListNum(val);
                             }
                         }}
                         onBlur={() => {
                             const num = Number(listNum);
-                            const clamped = Math.max(1, Math.min(num || 1, 100));
+                            const clamped = Math.max(1, Math.min(num || 1, 50));
                             setListNum(clamped.toString());
                         }}
 
