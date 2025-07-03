@@ -19,6 +19,7 @@ export default function AssistStatPage(){
                 state: {
                 playerType: "skaters",
                 statType: "assists",
+                statKey: "assists",
                 count,
                 gameType
                 }
