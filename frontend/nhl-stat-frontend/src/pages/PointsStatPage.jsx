@@ -18,6 +18,7 @@ export default function PointStatPage(){
                 state: {
                 playerType: "skaters",
                 statType: "points",
+                statKey: "points",
                 count,
                 gameType
                 }
