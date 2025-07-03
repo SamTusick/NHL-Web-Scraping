@@ -2,6 +2,7 @@
 
 # app.py
 import os
+import chromedriver_autoinstaller
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from selenium import webdriver
@@ -19,6 +20,9 @@ CORS(app)
 # Driver SetUp Function
 
 def setup_driver():
+
+    chromedriver_autoinstaller.install()
+
     options = Options()
     options.add_argument("--headless=new")
     options.add_argument("--ignore-certificate-errors")
