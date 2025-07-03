@@ -18,6 +18,7 @@ export default function SoStatPage(){
                 state: {
                 playerType: "goalies",
                 statType: "so",
+                statKey: "shutouts",
                 count,
                 gameType
                 }
