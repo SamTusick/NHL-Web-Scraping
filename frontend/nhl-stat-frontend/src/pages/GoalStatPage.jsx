@@ -18,6 +18,7 @@ export default function GoalStatPage(){
                 state: {
                 playerType: "skaters",
                 statType: "goals",
+                statKey: "goals",
                 count,
                 gameType
                 }
