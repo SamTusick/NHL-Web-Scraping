@@ -42,17 +42,18 @@ export default function ResultsPage(){
             <div className="results-list">
                 {results ? (
                     <>
-                        <h3>{results.title}</h3>
-                        <ul>
+                        <h3 className='title'>{results.title}</h3>
+                        <ol>
                         {results.leaders.map((player, i) => (
-                            <li key={i}>
-                                {player.name}: {player[statKey]}
+                            <li key={i} className='result-row'>
+                                <span className="result-rank">{i + 1}.</span>
+                                <span className="result-text">{player.name}: {player[statKey]}</span>
                             </li>
                         ))}
-                        </ul>
+                        </ol>
                     </>
                 ) : (
-                    <p>Loading results...</p>
+                    <p className='loading'>Loading results...</p>
                 )}
             </div>            
         </>
