@@ -1,6 +1,7 @@
 # Flask API
 
 # app.py
+import os
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from selenium import webdriver
@@ -157,4 +158,4 @@ def get_so_stats():
         driver.quit()
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
