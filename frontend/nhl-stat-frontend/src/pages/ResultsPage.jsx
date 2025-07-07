@@ -17,7 +17,8 @@ export default function ResultsPage(){
         console.log("FETCHING:", { playerType, statType, count, gameType });
         
         const fetchData = async () => {
-            const url = `http://localhost:5000/stats/${playerType}/${statType}?count=${count}&gameType=${encodeURIComponent(gameType)}`;
+            const baseUrl = import.meta.env.VITE_API_BASE_URL;
+            const url = `${baseUrl}/stats/${playerType}/${statType}?count=${count}&gameType=${encodeURIComponent(gameType)}`;
             try {
                 const res = await fetch(url);
                 const data = await res.json();
