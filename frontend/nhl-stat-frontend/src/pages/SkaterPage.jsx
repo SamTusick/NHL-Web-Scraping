@@ -3,7 +3,7 @@
 import HomeButton from '../components/HomeButton'
 import PreviousButton from '../components/PreviousButton'
 import SelectionButton from '../components/SelectionButton'
-import '../styling/SelectionButton.css'
+import '../styling/selectionButton.css'
 import '../styling/page.css'
 
 export default function PlayerPage(){
