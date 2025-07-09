@@ -2,7 +2,7 @@
 
 # app.py
 import os
-import chromedriver_autoinstaller
+from selenium.webdriver.chrome.service import Service
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from selenium import webdriver
@@ -20,9 +20,8 @@ CORS(app)
 
 def setup_driver():
 
-    chromedriver_autoinstaller.install()
-
     options = Options()
+    options.binary_location = "/usr/bin/google-chrome"
     options.add_argument("--headless=new")
     options.add_argument("--ignore-certificate-errors")
     options.add_argument("--disable-gpu")
@@ -30,7 +29,9 @@ def setup_driver():
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--window-size=1920,1080")
 
-    driver = webdriver.Chrome(options=options)
+    service = Service()
+
+    driver = webdriver.Chrome(service=service, options=options)
     wait = WebDriverWait(driver, 15)
 
     return driver, wait
