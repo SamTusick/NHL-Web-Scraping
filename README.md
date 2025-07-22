@@ -4,7 +4,7 @@ A Python + React tool that scrapes real-time NHL data by category using Selenium
 
 ## 🎥 Demo
 
-A demo video can be found here: [coming soon]
+[![Watch the demo](https://img.youtube.com/vi/1gMDVs8MUEQ/maxresdefault.jpg)](https://youtu.be/1gMDVs8MUEQ)
 
 ## 🧪 Usage
 
