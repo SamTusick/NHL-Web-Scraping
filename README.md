@@ -1,52 +1,48 @@
 # 🏒 NHL Web Scraper
 
-This project scrapes top NHL player stats (Goals, Assists, Points) from [NHL.com](https://www.nhl.com) using Python and Selenium.
+A Python + React tool that scrapes real-time NHL data by category using Selenium. Built for quick access to different player stat leaders.
 
----
+## 🎥 Demo
 
-## 🧪 To Run
+A demo video can be found here: [coming soon]
 
-1. Make sure ChromeDriver is installed and matches your Chrome version.
-2. Open terminal and run:
+## 🧪 Usage
+
+Once both servers are running, you can interact with the app via the frontend. It makes API calls to the Flask backend to fetch NHL stats. Progress checkpoints and scraping updates will appear in the backend terminal.
+
+## 🛠 Prerequisites
+
+- [Node.js](https://nodejs.org/) installed
+- [Python 3.9+](https://www.python.org/) installed
+- `pip` and `venv` available
+
+## 🚀 Getting Started
+
+You will need **two separate terminals** to run this program.
+
+### 1. Clone the Repository
 
 ```bash
-python nhlScraper.py
+git clone https://github.com/SamTusick/NHL-Web-Scraping.git
+cd NHL-Web-Scraping
+```
+### 2. Set Up the Frontend (Terminal 1)
+
+```bash
+cd frontend/nhl-stat-frontend
+npm install
+npm run dev
 ```
 
----
+### 3. Set Up the Backend (Terminal 2)
 
-## 📁 Project Structure
+```bash
+cd NHL-Web-Scraping
+python -m venv .venv
+source .venv/Scripts/activate   # On Windows
+# or
+source .venv/bin/activate       # On macOS/Linux
 
-- `userMenu.py`  
-  Handles user input from the terminal. Displays a numbered menu of stat categories and returns the user's selection.
-
-- `nhlScraper.py`  
-  Core scraping logic using Selenium. Launches browser, navigates NHL.com, scrapes the selected stats, and displays the top 5 players for goals, assists, or points.
-
----
-
-## 🧠 Current Functionality
-
-- Prompts user to choose a stat category (Goals, Assists, Points).
-- Launches Chrome browser via Selenium WebDriver.
-- Navigates to NHL stats page and selects "Skaters" tab.
-- Closes the cookie pop-up (if it appears).
-- Clicks the correct column to sort data based on the user selection.
-- Scrapes top 5 players for the selected stat.
-- Asks if the user wants to continue or quit.
-
----
-
-## ⚙️ Requirements
-
-- Python 3.x
-- `selenium` library
-- ChromeDriver installed and path correctly set in `PATH` variable:
-
----
-
-## ✍️ Author
-
-Samuel Tusick
-Software Engineering Student @ Florida Gulf Coast University
-Focus: Backend & AI
+pip install -r requirements.txt
+python app.py
+```
