@@ -24,6 +24,19 @@ def setup_driver():
     options.add_argument("--no-sandbox")
     options.add_argument("--window-size=1920,1080")
 
+        # Anti-detection - CRITICAL for scraping
+    options.add_argument("--disable-blink-features=AutomationControlled")
+    options.add_experimental_option("excludeSwitches", ["enable-automation"])
+    options.add_experimental_option('useAutomationExtension', False)
+    
+    # Real user agent (hides "HeadlessChrome")
+    options.add_argument(
+        "user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36"
+    )
+    
+    # Force window size (for --headless=new issues)
+    options.add_argument("--start-maximized")
+
     driver = webdriver.Chrome(options=options)
     wait = WebDriverWait(driver, 15)
 
@@ -46,6 +59,7 @@ def get_goal_stats():
     driver.get("https://www.nhl.com")
 
     try:
+        close_cookie_window(driver, wait)
         count = request.args.get("count", default=6, type=int)
         gameType = request.args.get("gameType", default="Regular Season")
         data = scrape_stat_leaders(driver, wait, stat_title = "Goals", column_index = 8, label = "goals", is_first=True, count=count, gameType=gameType)

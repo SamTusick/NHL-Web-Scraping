@@ -22,8 +22,9 @@ def wait_for_spinner_to_disappear(wait):
 
 def close_cookie_window(driver, wait):
     try:
+        driver.maximize_window()
         # Checks to see if cookie banner is present
-        cookieAccept = driver.find_element(By.XPATH, "//*[@id='onetrust-accept-btn-handler']")
+        cookieAccept = driver.find_element(By.XPATH, "//button[contains(text(), 'I Understand')]")
         cookieAccept.click()
         print("\nCookie window close successfully!\n")
 
@@ -35,7 +36,7 @@ def close_cookie_window(driver, wait):
 def click_stat_tab(driver, wait):
 
     wait_for_spinner_to_disappear(wait)
-    statsElement = wait.until(EC.element_to_be_clickable((By.XPATH, "//span[contains(text(), 'Stats')]")))
+    statsElement = wait.until(EC.element_to_be_clickable((By.XPATH, "//span[contains(text(), 'STATS')]")))
     statsElement.click()
 
 # Click Player Section
