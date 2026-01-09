@@ -1,22 +1,22 @@
-# 🏒 NHL Web Scraper
+#  NHL Web Scraper
 
 A Python + React tool that scrapes real-time NHL data by category using Selenium. Built for quick access to different player stat leaders.
 
-## 🎥 Demo
+##  Demo
 
 [![Watch the demo](https://img.youtube.com/vi/1gMDVs8MUEQ/maxresdefault.jpg)](https://youtu.be/1gMDVs8MUEQ)
 
-## 🧪 Usage
+##  Usage
 
 Once both servers are running, you can interact with the app via the frontend. It makes API calls to the Flask backend to fetch NHL stats. Progress checkpoints and scraping updates will appear in the backend terminal.
 
-## 🛠 Prerequisites
+##  Prerequisites
 
 - [Node.js](https://nodejs.org/) installed
 - [Python 3.9+](https://www.python.org/) installed
 - `pip` and `venv` available
 
-## 🚀 Getting Started
+##  Getting Started
 
 You will need **two separate terminals** to run this program.
 
