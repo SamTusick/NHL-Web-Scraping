@@ -25,6 +25,14 @@ Once both servers are running, you can interact with the app via the frontend. I
 
 You will need **two separate terminals** to run this program.
 
+To run locally you will need to change the fetch url in NHL-Web-Scraping\frontend\nhl-stat-frontend\src\pages\ResultsPage.jsx on line 20 to
+
+```bash
+
+const url = `http://localhost:5000/stats/${playerType}/${statType}?count=${count}&gameType=${encodeURIComponent(gameType)}`;
+
+```
+
 ### 1. Clone the Repository
 
 ```bash
