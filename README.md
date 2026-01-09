@@ -2,7 +2,8 @@
 
 A Python + React tool that scrapes real-time NHL data by category using Selenium. Built for quick access to different player stat leaders.
 
-*Currently have the frontend running through Netlify, but working on a way to deploy the backend, that is cost effictive and enough memory in an instance to handle headless Chrome*
+*Currently have the frontend running through Netlify, but working on a way to deploy the backend, that is cost effictive and enough memory in an instance to handle headless Chrome.*
+*Backend is being deployed on Render, but the instance I'm currently running doesn't have enough memory for Selenium and headless Chrome*
 
 [Link to Deployed Frontend](https://nhl-stat-scraper.netlify.app/)
 
