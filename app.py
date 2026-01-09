@@ -23,19 +23,7 @@ def setup_driver():
     options.add_argument("--disable-gpu")
     options.add_argument("--no-sandbox")
     options.add_argument("--window-size=1920,1080")
-
-        # Anti-detection - CRITICAL for scraping
-    options.add_argument("--disable-blink-features=AutomationControlled")
-    options.add_experimental_option("excludeSwitches", ["enable-automation"])
-    options.add_experimental_option('useAutomationExtension', False)
-    
-    # Real user agent (hides "HeadlessChrome")
-    options.add_argument(
-        "user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36"
-    )
-    
-    # Force window size (for --headless=new issues)
-    options.add_argument("--start-maximized")
+    options.add_argument("--disable-blink-features=AutomationControlled")   
 
     driver = webdriver.Chrome(options=options)
     wait = WebDriverWait(driver, 15)
@@ -56,7 +44,7 @@ def get_goal_stats():
     print("Setting Up Driver...")
     driver, wait = setup_driver()
 
-    driver.get("https://www.nhl.com")
+    driver.get("https://www.nhl.com/stats")
 
     try:
         close_cookie_window(driver, wait)
@@ -76,7 +64,7 @@ def get_assists_stats():
     print("Setting Up Driver...")
     driver, wait = setup_driver()
 
-    driver.get("https://www.nhl.com")
+    driver.get("https://www.nhl.com/stats")
 
     try:
         close_cookie_window(driver, wait)
@@ -96,7 +84,7 @@ def get_points_stats():
     print("Setting Up Driver..")
     driver, wait = setup_driver()
 
-    driver.get("https://www.nhl.com")
+    driver.get("https://www.nhl.com/stats")
 
     try:
         close_cookie_window(driver, wait)
@@ -117,7 +105,7 @@ def get_sv_stats():
     print("Setting Up Driver..")
     driver, wait = setup_driver()
 
-    driver.get("https://www.nhl.com")
+    driver.get("https://www.nhl.com/stats")
 
     try:
         close_cookie_window(driver, wait)
@@ -137,7 +125,7 @@ def get_gaa_stats():
     print("Setting Up Driver..")
     driver, wait = setup_driver()
 
-    driver.get("https://www.nhl.com")
+    driver.get("https://www.nhl.com/stats")
 
     try:
         close_cookie_window(driver, wait)
@@ -157,7 +145,7 @@ def get_so_stats():
     print("Setting Up Driver..")
     driver, wait = setup_driver()
 
-    driver.get("https://www.nhl.com")
+    driver.get("https://www.nhl.com/stats")
 
     try:
         close_cookie_window(driver, wait)

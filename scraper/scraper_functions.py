@@ -63,8 +63,10 @@ def click_game_type(driver, wait, gameType):
 
         # Wait for dropdown option and click it
         game_type_option = wait.until(EC.element_to_be_clickable(
-            (By.XPATH, f'//li[normalize-space()="{gameType}"]')
-        ))
+            (By.XPATH, f"//div[@role='listbox' or @role='menu']//li[normalize-space()='{gameType}'] | "
+                           f"//div[@role='listbox' or @role='menu']//button[normalize-space()='{gameType}']")
+            )
+        )
         game_type_option.click()
 
         print(f"✅ Clicked game type: {gameType}")
@@ -82,15 +84,15 @@ def scrape_stat_leaders(driver, wait, stat_title="Goals", column_index=8, label=
     if gameType == "Playoffs" and playerType == "goalie":
         column_index = column_index - 1
 
-    print("Clicking Stat Tab...")
-    click_stat_tab(driver, wait)
+    #print("Clicking Stat Tab...")
+    #click_stat_tab(driver, wait)
 
 
     print(f"Getting {playerType.title()}s...")
     click_player_section(driver, wait, playerType=playerType)
 
-    print(f"Selecting {gameType}...")
-    click_game_type(driver, wait, gameType=gameType)
+    #print(f"Selecting {gameType}...")
+    #click_game_type(driver, wait, gameType=gameType)
 
     print(f"Waiting for table and clicking {stat_title} column...")
 
