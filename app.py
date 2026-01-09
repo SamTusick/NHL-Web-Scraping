@@ -158,4 +158,4 @@ def get_so_stats():
         driver.quit()
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
