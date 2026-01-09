@@ -17,7 +17,7 @@ export default function ResultsPage(){
         console.log("FETCHING:", { playerType, statType, count, gameType });
         
         const fetchData = async () => {
-            const url = `http://localhost:5000/stats/${playerType}/${statType}?count=${count}&gameType=${encodeURIComponent(gameType)}`;
+            const url = `http://nhl-web-scraping.onrender.com/stats/${playerType}/${statType}?count=${count}&gameType=${encodeURIComponent(gameType)}`;
             try {
                 const res = await fetch(url);
                 const data = await res.json();
